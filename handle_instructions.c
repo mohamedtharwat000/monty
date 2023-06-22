@@ -1,5 +1,7 @@
 #include "monty.h"
 
+void execute_instruction(instruction_t *stack_handle);
+
 /**
  * handle_instructions - Read and execute instructions from a file.
  * @file: Pointer to the file to read instructions from.
@@ -10,10 +12,8 @@
  */
 void handle_instructions(FILE *file)
 {
-	ssize_t i = 0, readed = 0;
+	ssize_t readed = 0;
 	size_t size = 0;
-	unsigned int line_number = 0;
-	char *opcode = NULL;
 	instruction_t stack_handle[] = {
 		{"push", stack_push},
 		{"pall", stack_pall},
@@ -24,31 +24,51 @@ void handle_instructions(FILE *file)
 
 	while ((readed = getline(&(state.buff_line), &size, file)) != -1)
 	{
-		line_number++;
-		opcode = strtok(state.buff_line, " ");
-		if (strcmp(opcode, "\n") == 0)
-			continue;
-
-		if (opcode[strlen(opcode) - 1] == '\n')
-			opcode[strlen(opcode) - 1] = '\0';
-
-		i = 0;
-		while (stack_handle[i].opcode)
-		{
-			if (strcmp(stack_handle[i].opcode, opcode) == 0)
-			{
-				stack_handle[i].f(&(state.stack), line_number);
-				break;
-			}
-			i++;
-		}
-		if (stack_handle[i].opcode == NULL)
-		{
-			dprintf(STDERR_FILENO, "L%u: unknown instruction %s\n",
-							line_number, opcode);
-			clean_exit();
-		}
+		(state.line_number)++;
+		execute_instruction(stack_handle);
 	}
-	state.buff_line != NULL ? free(state.buff_line) : (void)0;
-	state.stack != NULL ? stack_free(state.stack) : (void)0;
+	free(state.buff_line);
+	stack_free(state.stack);
+}
+
+
+
+/**
+ * execute_instruction - Execute the instruction based on the opcode.
+ * @stack_handle: Array of instruction_t structs
+ *
+ * This function executes the instruction based on the provided opcode.
+ *
+ */
+void execute_instruction(instruction_t *stack_handle)
+{
+	size_t opcode_len = 0, i = 0;
+	char *opcode = strtok(state.buff_line, " ");
+
+	if (opcode == NULL)
+		return;
+
+	opcode_len = strlen(opcode);
+	if (strcmp(opcode, "\n") == 0)
+		return;
+
+	if (opcode[opcode_len - 1] == '\n')
+		opcode[opcode_len - 1] = '\0';
+
+	while (stack_handle[i].opcode)
+	{
+		if (strcmp(stack_handle[i].opcode, opcode) == 0)
+		{
+			stack_handle[i].f(&(state.stack), state.line_number);
+			break;
+		}
+		i++;
+	}
+
+	if (stack_handle[i].opcode == NULL)
+	{
+		dprintf(STDERR_FILENO, "L%u: unknown instruction %s\n",
+						state.line_number, opcode);
+		clean_exit();
+	}
 }
