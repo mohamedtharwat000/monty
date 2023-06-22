@@ -8,13 +8,12 @@
 #include <ctype.h>
 
 /**
- * struct stack_s - doubly linked list representation of a stack (or queue)
- * @n: integer
- * @prev: points to the previous element of the stack (or queue)
- * @next: points to the next element of the stack (or queue)
+ * struct stack_s - Doubly linked list representation of a stack (or queue)
+ * @n: Integer value
+ * @prev: Pointer to the previous element of the stack (or queue)
+ * @next: Pointer to the next element of the stack (or queue)
  *
- * Description: doubly linked list node structure
- * for stack, queues, LIFO, FIFO
+ * Description: Doubly linked list node structure for stack, queues, LIFO, FIFO
  */
 typedef struct stack_s
 {
@@ -24,12 +23,11 @@ typedef struct stack_s
 } stack_t;
 
 /**
- * struct instruction_s - opcode and its function
- * @opcode: the opcode
- * @f: function to handle the opcode
+ * struct instruction_s - Opcode and its function
+ * @opcode: The opcode
+ * @f: Function to handle the opcode
  *
- * Description: opcode and its function
- * for stack, queues, LIFO, FIFO
+ * Description: Opcode and its function for stack, queues, LIFO, FIFO
  */
 typedef struct instruction_s
 {
@@ -43,4 +41,4 @@ void stack_pall(stack_t **stack, unsigned int line_number);
 void stack_free(stack_t *head);
 int isnumber(char *str);
 
-#endif
+#endif /* MONTY_H */

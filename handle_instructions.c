@@ -19,6 +19,7 @@ void handle_instructions(FILE *file)
 		{"pall", stack_pall},
 		{NULL, NULL}
 	};
+
 	while ((readed = getline(&buff_line, &size, file)) != -1)
 	{
 		line_number++;
@@ -43,7 +44,7 @@ void handle_instructions(FILE *file)
 		if (stack_handle[i].opcode == NULL)
 		{
 			dprintf(STDERR_FILENO, "L%lu: unknown instruction %s\n",
-								line_number, opcode);
+							line_number, opcode);
 			free(buff_line);
 			exit(EXIT_FAILURE);
 		}

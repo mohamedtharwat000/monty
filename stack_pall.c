@@ -13,7 +13,7 @@ void stack_pall(stack_t **stack, unsigned int line_number)
 
 	(void)line_number;
 
-	while (current)
+	while (current != NULL)
 	{
 		printf("%d\n", current->n);
 		current = current->prev;
