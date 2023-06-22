@@ -14,6 +14,12 @@ void stack_push(stack_t **stack, unsigned int line_number)
 	int opcode_argument_readed = 0;
 
 	opcode_argument = strtok(NULL, " ");
+
+	if (opcode_argument[strlen(opcode_argument) - 1] == '\n')
+	{
+		opcode_argument[strlen(opcode_argument) - 1] = '\0';
+	}
+
 	if (opcode_argument == NULL || !isnumber(opcode_argument))
 	{
 		dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
