@@ -10,6 +10,11 @@ int isnumber(char *str)
 {
 	int i = 0;
 
+	if (str[i] == '-')
+	{
+		i++;
+	}
+
 	while (str[i])
 	{
 		if (!isdigit(str[i]))
