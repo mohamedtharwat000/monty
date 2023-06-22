@@ -15,7 +15,8 @@ void stack_push(stack_t **stack, unsigned int line_number)
 
 	opcode_argument = strtok(NULL, " ");
 
-	if (opcode_argument[strlen(opcode_argument) - 1] == '\n')
+	if (opcode_argument &&
+			(opcode_argument[strlen(opcode_argument) - 1] == '\n'))
 	{
 		opcode_argument[strlen(opcode_argument) - 1] = '\0';
 	}
