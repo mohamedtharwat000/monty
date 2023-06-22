@@ -18,6 +18,7 @@ void handle_instructions(FILE *file)
 		{"push", stack_push},
 		{"pall", stack_pall},
 		{"pint", stack_pint},
+		{"pop", stack_pop},
 		{NULL, NULL}
 	};
 
