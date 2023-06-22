@@ -11,7 +11,8 @@
 void handle_instructions(FILE *file)
 {
 	ssize_t i = 0, readed = 0;
-	size_t size = 0, line_number = 0;
+	size_t size = 0;
+	unsigned int line_number = 0;
 	char *opcode = NULL, *buff_line = NULL;
 	stack_t *stack_top = NULL;
 	instruction_t stack_handle[] = {
@@ -43,7 +44,7 @@ void handle_instructions(FILE *file)
 		}
 		if (stack_handle[i].opcode == NULL)
 		{
-			dprintf(STDERR_FILENO, "L%lu: unknown instruction %s\n",
+			dprintf(STDERR_FILENO, "L%u: unknown instruction %s\n",
 							line_number, opcode);
 			free(buff_line);
 			exit(EXIT_FAILURE);
