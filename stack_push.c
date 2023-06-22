@@ -27,7 +27,7 @@ void stack_push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	opcode_argument_readed = atoi(opcode_argument);
+	opcode_argument_readed = str_to_num(opcode_argument);
 
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
