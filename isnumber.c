@@ -12,10 +12,6 @@ int isnumber(char *str)
 
 	while (str[i])
 	{
-		if (str[i] == '\n' && str[i + 1] == '\0')
-		{
-			break;
-		}
 		if (!isdigit(str[i]))
 		{
 			return (0);
