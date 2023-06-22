@@ -7,6 +7,8 @@
 #include <unistd.h>
 #include <ctype.h>
 
+extern char *buff_line;
+
 /**
  * struct stack_s - Doubly linked list representation of a stack (or queue)
  * @n: Integer value

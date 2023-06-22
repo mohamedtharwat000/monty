@@ -1,5 +1,7 @@
 #include "monty.h"
 
+char *buff_line = NULL;
+
 /**
  * handle_instructions - Read and execute instructions from a file.
  * @file: Pointer to the file to read instructions from.
@@ -13,7 +15,7 @@ void handle_instructions(FILE *file)
 	ssize_t i = 0, readed = 0;
 	size_t size = 0;
 	unsigned int line_number = 0;
-	char *opcode = NULL, *buff_line = NULL;
+	char *opcode = NULL;
 	stack_t *stack_top = NULL;
 	instruction_t stack_handle[] = {
 		{"push", stack_push},

@@ -24,6 +24,7 @@ void stack_push(stack_t **stack, unsigned int line_number)
 	if (opcode_argument == NULL || !isnumber(opcode_argument))
 	{
 		dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
+		free(buff_line);
 		exit(EXIT_FAILURE);
 	}
 
@@ -33,6 +34,7 @@ void stack_push(stack_t **stack, unsigned int line_number)
 	if (new_node == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		free(buff_line);
 		exit(EXIT_FAILURE);
 	}
 
