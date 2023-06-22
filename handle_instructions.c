@@ -21,6 +21,7 @@ void handle_instructions(FILE *file)
 		{"swap", stack_swap},
 		{"pop", stack_pop},
 		{"add", stack_add},
+		{"nop", stack_nop},
 		{NULL, NULL}
 	};
 
