@@ -40,5 +40,6 @@ void stack_push(stack_t **stack, unsigned int line_number);
 void stack_pall(stack_t **stack, unsigned int line_number);
 void stack_free(stack_t *head);
 int isnumber(char *str);
+int str_to_num(char *str);
 
 #endif /* MONTY_H */
