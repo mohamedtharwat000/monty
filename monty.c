@@ -1,6 +1,6 @@
 #include "monty.h"
 
-state_t state = {NULL, NULL};
+state_t state = {0, NULL, NULL};
 
 /**
  * main - Monty interpreter entry point

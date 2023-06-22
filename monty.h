@@ -44,6 +44,7 @@ typedef struct instruction_s
  */
 typedef struct state_s
 {
+	unsigned int line_number;
 	char *buff_line;
 	stack_t *stack;
 } state_t;
