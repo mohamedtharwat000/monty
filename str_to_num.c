@@ -19,5 +19,5 @@ int str_to_num(char *str)
 
 	result = atoi(str) * sign;
 
-	return result;
+	return (result);
 }
