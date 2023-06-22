@@ -28,8 +28,10 @@ void handle_instructions(FILE *file)
 		opcode = strtok(state.buff_line, " ");
 		if (strcmp(opcode, "\n") == 0)
 			continue;
+
 		if (opcode[strlen(opcode) - 1] == '\n')
 			opcode[strlen(opcode) - 1] = '\0';
+
 		i = 0;
 		while (stack_handle[i].opcode)
 		{

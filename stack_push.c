@@ -19,7 +19,9 @@ void stack_push(stack_t **stack, unsigned int line_number)
 	{
 		opcode_argument_length = strlen(opcode_argument);
 		if (opcode_argument[opcode_argument_length - 1] == '\n')
+		{
 			opcode_argument[opcode_argument_length - 1] = '\0';
+		}
 	}
 	if (opcode_argument == NULL || !isnumber(opcode_argument))
 	{

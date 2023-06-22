@@ -20,7 +20,7 @@ void stack_free(stack_t *stack)
 }
 
 /**
- * stack_free - free the stack.
+ * clean_exit - free the memory and exit with EXIT_FAILURE.
  */
 void clean_exit(void)
 {
