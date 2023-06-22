@@ -1,5 +1,7 @@
 #include "monty.h"
 
+state_t state = {NULL, NULL};
+
 /**
  * main - Monty interpreter entry point
  * @argc: Number of command-line arguments

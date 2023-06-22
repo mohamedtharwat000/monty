@@ -7,7 +7,6 @@
 #include <unistd.h>
 #include <ctype.h>
 
-extern char *buff_line;
 
 /**
  * struct stack_s - Doubly linked list representation of a stack (or queue)
@@ -37,10 +36,26 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+
+/**
+ * struct stat_s - program state to store as global variable
+ * @prev: Pointer to buff_line.
+ * @next: Pointer to stack.
+ */
+typedef struct state_s
+{
+	char *buff_line;
+	stack_t *stack;
+} state_t;
+
+extern state_t state;
+
+
 void handle_instructions(FILE *file);
 void stack_push(stack_t **stack, unsigned int line_number);
 void stack_pall(stack_t **stack, unsigned int line_number);
-void stack_free(stack_t *head);
+void stack_pint(stack_t **stack, unsigned int line_number);
+void stack_free(stack_t *stack);
 int isnumber(char *str);
 int str_to_num(char *str);
 

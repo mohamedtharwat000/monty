@@ -1,7 +1,5 @@
 #include "monty.h"
 
-char *buff_line = NULL;
-
 /**
  * handle_instructions - Read and execute instructions from a file.
  * @file: Pointer to the file to read instructions from.
@@ -16,17 +14,17 @@ void handle_instructions(FILE *file)
 	size_t size = 0;
 	unsigned int line_number = 0;
 	char *opcode = NULL;
-	stack_t *stack_top = NULL;
 	instruction_t stack_handle[] = {
 		{"push", stack_push},
 		{"pall", stack_pall},
+		{"pint", stack_pint},
 		{NULL, NULL}
 	};
 
-	while ((readed = getline(&buff_line, &size, file)) != -1)
+	while ((readed = getline(&(state.buff_line), &size, file)) != -1)
 	{
 		line_number++;
-		opcode = strtok(buff_line, " ");
+		opcode = strtok(state.buff_line, " ");
 		if (strcmp(opcode, "\n") == 0)
 			continue;
 
@@ -38,7 +36,7 @@ void handle_instructions(FILE *file)
 		{
 			if (strcmp(stack_handle[i].opcode, opcode) == 0)
 			{
-				stack_handle[i].f(&stack_top, line_number);
+				stack_handle[i].f(&(state.stack), line_number);
 				break;
 			}
 			i++;
@@ -47,9 +45,11 @@ void handle_instructions(FILE *file)
 		{
 			dprintf(STDERR_FILENO, "L%u: unknown instruction %s\n",
 							line_number, opcode);
-			free(buff_line);
+			state.buff_line != NULL ? free(state.buff_line) : (void)0;
+			state.stack != NULL ? stack_free(state.stack) : (void)0;
 			exit(EXIT_FAILURE);
 		}
 	}
-	free(buff_line);
+	state.buff_line != NULL ? free(state.buff_line) : (void)0;
+	state.stack != NULL ? stack_free(state.stack) : (void)0;
 }
