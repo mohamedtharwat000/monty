@@ -25,7 +25,7 @@ void handle_instructions(FILE *file)
 	{
 		line_number++;
 		opcode = strtok(buff_line, " ");
-		if (opcode == NULL)
+		if (strcmp(opcode, "\n") == 0)
 			continue;
 
 		if (opcode[strlen(opcode) - 1] == '\n')
