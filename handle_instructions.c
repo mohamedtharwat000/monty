@@ -44,11 +44,8 @@ void handle_instructions(FILE *file)
 		{
 			dprintf(STDERR_FILENO, "L%u: unknown instruction %s\n",
 							line_number, opcode);
-			state.buff_line != NULL ? free(state.buff_line) : (void)0;
-			state.stack != NULL ? stack_free(state.stack) : (void)0;
-			exit(EXIT_FAILURE);
+			clean_exit();
 		}
 	}
-	state.buff_line != NULL ? free(state.buff_line) : (void)0;
-	state.stack != NULL ? stack_free(state.stack) : (void)0;
+	clean_exit();
 }

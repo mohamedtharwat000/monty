@@ -24,17 +24,13 @@ void stack_push(stack_t **stack, unsigned int line_number)
 	if (opcode_argument == NULL || !isnumber(opcode_argument))
 	{
 		dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
-		state.buff_line != NULL ? free(state.buff_line) : (void)0;
-		state.stack != NULL ? stack_free(state.stack) : (void)0;
-		exit(EXIT_FAILURE);
+		clean_exit();
 	}
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
-		state.buff_line != NULL ? free(state.buff_line) : (void)0;
-		state.stack != NULL ? stack_free(state.stack) : (void)0;
-		exit(EXIT_FAILURE);
+		clean_exit();
 	}
 	if (*stack == NULL)
 	{

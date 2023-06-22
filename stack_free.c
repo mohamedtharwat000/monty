@@ -18,3 +18,13 @@ void stack_free(stack_t *stack)
 		current = tmp;
 	}
 }
+
+/**
+ * stack_free - free the stack.
+ */
+void clean_exit(void)
+{
+	state.buff_line != NULL ? free(state.buff_line) : (void)0;
+	state.stack != NULL ? stack_free(state.stack) : (void)0;
+	exit(EXIT_FAILURE);
+}
