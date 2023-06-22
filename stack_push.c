@@ -27,7 +27,6 @@ void stack_push(stack_t **stack, unsigned int line_number)
 		free(buff_line);
 		exit(EXIT_FAILURE);
 	}
-
 	opcode_argument_readed = str_to_num(opcode_argument);
 
 	new_node = malloc(sizeof(stack_t));
@@ -48,7 +47,6 @@ void stack_push(stack_t **stack, unsigned int line_number)
 		new_node->prev = *stack;
 		(*stack)->next = new_node;
 	}
-
 	new_node->n = opcode_argument_readed;
 	*stack = new_node;
 }
