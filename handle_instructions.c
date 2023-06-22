@@ -15,10 +15,11 @@ void handle_instructions(FILE *file)
 	ssize_t readed = 0;
 	size_t size = 0;
 	instruction_t stack_handle[] = {
+		{"pop", stack_pop},
 		{"push", stack_push},
 		{"pall", stack_pall},
 		{"pint", stack_pint},
-		{"pop", stack_pop},
+		{"swap", stack_swap},
 		{NULL, NULL}
 	};
 
