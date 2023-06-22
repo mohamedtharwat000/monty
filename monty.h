@@ -38,9 +38,9 @@ typedef struct instruction_s
 
 
 /**
- * struct stat_s - program state to store as global variable
- * @prev: Pointer to buff_line.
- * @next: Pointer to stack.
+ * struct state_s - program state to store as global variable
+ * @buff_line: Pointer to buff_line.
+ * @stack: Pointer to stack.
  */
 typedef struct state_s
 {
