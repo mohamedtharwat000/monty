@@ -49,5 +49,6 @@ void handle_instructions(FILE *file)
 			clean_exit();
 		}
 	}
-	clean_exit();
+	state.buff_line != NULL ? free(state.buff_line) : (void)0;
+	state.stack != NULL ? stack_free(state.stack) : (void)0;
 }
