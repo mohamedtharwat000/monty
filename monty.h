@@ -39,20 +39,26 @@ typedef struct instruction_s
 
 /**
  * struct state_s - program state to store as global variable
+ * @line_number: line_number.
  * @buff_line: Pointer to buff_line.
  * @stack: Pointer to stack.
  */
 typedef struct state_s
 {
 	unsigned int line_number;
+	size_t buff_size;
 	char *buff_line;
 	stack_t *stack;
 } state_t;
 
+/* global state variable */
 extern state_t state;
 
+/* functions to read and execute instructions */
+void read_instructions(FILE *file);
+void execute_instruction(instruction_t *stack_handle);
 
-void handle_instructions(FILE *file);
+/* stack functions */
 void stack_push(stack_t **stack, unsigned int line_number);
 void stack_pop(stack_t **stack, unsigned int line_number);
 void stack_pall(stack_t **stack, unsigned int line_number);
@@ -60,6 +66,8 @@ void stack_pint(stack_t **stack, unsigned int line_number);
 void stack_swap(stack_t **stack, unsigned int line_number);
 void stack_add(stack_t **stack, unsigned int line_number);
 void stack_nop(stack_t **stack, unsigned int line_number);
+
+/* helper functions */
 void stack_free(stack_t *stack);
 void clean_exit(void);
 int isnumber(char *str);

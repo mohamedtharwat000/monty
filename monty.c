@@ -1,6 +1,7 @@
 #include "monty.h"
 
-state_t state = {0, NULL, NULL};
+/* global state declaration */
+state_t state = {0, 0, NULL, NULL};
 
 /**
  * main - Monty interpreter entry point
@@ -25,7 +26,7 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	handle_instructions(file);
+	read_instructions(file);
 
 	fclose(file);
 
