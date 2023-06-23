@@ -13,7 +13,7 @@ void execute_instruction(instruction_t *stack_handle)
 	char *opcode = NULL;
 
 	opcode = strtok(state.buff_line, " ");
-	if (opcode == NULL || (strlen(opcode) == 1 && strcmp(opcode, "\n") == 0))
+	if (!opcode || strcmp(opcode, "\n") == 0 || strncmp(opcode, "#", 1) == 0)
 	{
 		return;
 	}
