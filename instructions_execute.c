@@ -31,7 +31,6 @@ void execute_instruction(instruction_t *stack_handle)
 		}
 	}
 
-	dprintf(STDERR_FILENO, "L%u: unknown instruction %s\n",
-																								state.line_number, opcode);
+	fprintf(stderr, "L%u: unknown instruction %s\n", state.line_number, opcode);
 		clean_exit();
 }

@@ -9,19 +9,15 @@
  */
 void stack_swap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *last1 = NULL, *last2 = NULL;
+	int last_n = 0;
 
 	if (!(*stack) || !(*stack)->prev)
 	{
-		dprintf(STDERR_FILENO, "L%u: can't swap, stack too short\n", line_number);
+		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
 		clean_exit();
 	}
 
-	last1 = state.stack;
-	last2 = state.stack->prev;
-	*stack = last2;
-	(*stack)->next = NULL;
-	(*stack)->prev = last1;
-	(*stack)->prev->prev = last2->prev;
-	(*stack)->prev->next = last2;
+	last_n = (*stack)->n;
+	(*stack)->n = (*stack)->prev->n;
+	(*stack)->prev->n = last_n;
 }

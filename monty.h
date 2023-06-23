@@ -40,8 +40,10 @@ typedef struct instruction_s
 /**
  * struct state_s - program state to store as global variable
  * @line_number: line_number.
+ * @buff_size: buff_size.
  * @buff_line: Pointer to buff_line.
  * @stack: Pointer to stack.
+ * @stack_size: stack_size.
  */
 typedef struct state_s
 {
@@ -49,6 +51,7 @@ typedef struct state_s
 	size_t buff_size;
 	char *buff_line;
 	stack_t *stack;
+	size_t stack_size;
 } state_t;
 
 /* global state variable */

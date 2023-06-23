@@ -10,31 +10,31 @@
 void stack_push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = NULL;
-	char *opcode_argument = NULL;
-	int opcode_argument_readed = 0;
-	size_t opcode_argument_length = 0;
+	char *opcode_arg = NULL;
+	size_t arg_last = 0;
 
-	opcode_argument = strtok(NULL, " ");
-	if (opcode_argument)
+	opcode_arg = strtok(NULL, " ");
+
+	if (opcode_arg != NULL)
 	{
-		opcode_argument_length = strlen(opcode_argument);
-		if (opcode_argument[opcode_argument_length - 1] == '\n')
-		{
-			opcode_argument[opcode_argument_length - 1] = '\0';
-		}
+		arg_last = strlen(opcode_arg) - 1;
+		(opcode_arg[arg_last] == '\n') ? (opcode_arg[arg_last] = '\0') : 0;
 	}
-	if (opcode_argument == NULL || !isnumber(opcode_argument))
+
+	if (opcode_arg == NULL || !isnumber(opcode_arg))
 	{
-		dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		clean_exit();
 	}
+
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		clean_exit();
 	}
-	if (*stack == NULL)
+
+	if (state.stack_size == 0)
 	{
 		new_node->prev = NULL;
 		new_node->next = NULL;
@@ -44,7 +44,8 @@ void stack_push(stack_t **stack, unsigned int line_number)
 		new_node->prev = *stack;
 		(*stack)->next = new_node;
 	}
-	opcode_argument_readed = str_to_num(opcode_argument);
-	new_node->n = opcode_argument_readed;
+
+	new_node->n = str_to_num(opcode_arg);
 	*stack = new_node;
+	state.stack_size += 1;
 }
