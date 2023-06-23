@@ -15,8 +15,12 @@ void read_instructions(FILE *file)
 		{"pint", stack_pint},
 		{"swap", stack_swap},
 		{"pop", stack_pop},
-		{"add", stack_add},
 		{"nop", stack_nop},
+		{"add", stack_add},
+		{"sub", stack_sub},
+		{"div", stack_div},
+		{"mul", stack_mul},
+		{"mod", stack_mod},
 		{NULL, NULL}
 	};
 

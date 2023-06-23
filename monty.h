@@ -67,8 +67,12 @@ void stack_pop(stack_t **stack, unsigned int line_number);
 void stack_pall(stack_t **stack, unsigned int line_number);
 void stack_pint(stack_t **stack, unsigned int line_number);
 void stack_swap(stack_t **stack, unsigned int line_number);
-void stack_add(stack_t **stack, unsigned int line_number);
 void stack_nop(stack_t **stack, unsigned int line_number);
+void stack_add(stack_t **stack, unsigned int line_number);
+void stack_sub(stack_t **stack, unsigned int line_number);
+void stack_div(stack_t **stack, unsigned int line_number);
+void stack_mul(stack_t **stack, unsigned int line_number);
+void stack_mod(stack_t **stack, unsigned int line_number);
 
 /* helper functions */
 void stack_free(stack_t *stack);
