@@ -21,7 +21,7 @@ void stack_push(stack_t **stack, unsigned int line_number)
 		(opcode_arg[arg_last] == '\n') ? (opcode_arg[arg_last] = '\0') : 0;
 	}
 
-	if (opcode_arg == NULL || !isnumber(opcode_arg))
+	if (opcode_arg == NULL || !isnumber(opcode_arg) || opcode_arg[0] == '\0')
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		clean_exit();
